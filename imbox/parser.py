@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from six import StringIO
 
+import chardet
 import re
 import email
 import base64
@@ -79,6 +80,7 @@ def parse_attachment(message_part):
     # Check again if this is a valid attachment
     content_disposition = message_part.get("Content-Disposition", None)
     if content_disposition is not None:
+        content_disposition = decode_string(content_disposition)
         dispositions = content_disposition.strip().split(";")
 
         if dispositions[0].lower() in ["attachment", "inline"]:
@@ -110,6 +112,13 @@ def decode_content(message):
     if charset != 'utf-8':
         return content.decode(charset)
     return content
+
+
+def decode_string(string):
+    guess = chardet.detect(string)
+    if guess['encoding']:
+        return string.decode(guess['encoding'])
+    return string
 
 
 def parse_email(raw_email):

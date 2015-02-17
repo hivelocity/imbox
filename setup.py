@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-version = '0.5.5'
+version = '0.5.5+hivelocity.1'
 
 
 def read(filename):
@@ -20,7 +20,7 @@ setup(
     packages=['imbox'],
     package_dir={'imbox': 'imbox'},
     zip_safe=False,
-    install_requires=['six'],
+    install_requires=['six', 'chardet'],
     classifiers=(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
