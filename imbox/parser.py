@@ -85,6 +85,8 @@ def parse_attachment(message_part):
 
         if dispositions[0].lower() in ["attachment", "inline"]:
             file_data = message_part.get_payload(decode=True)
+            if not file_data:
+                return None
 
             attachment = {
                 'content-type': message_part.get_content_type(),
