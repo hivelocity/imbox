@@ -110,6 +110,8 @@ def parse_attachment(message_part):
 
 def decode_content(message):
     content = message.get_payload(decode=True)
+    if not content:
+        return u""
     charset = message.get_content_charset('utf-8')
     if charset != 'utf-8':
         return content.decode(charset)
