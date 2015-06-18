@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-version = '0.5.5+hivelocity.3'
+version = '0.5.5+hivelocity.4'
 
 
 def read(filename):
